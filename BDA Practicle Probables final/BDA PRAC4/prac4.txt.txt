@@ -1,0 +1,44 @@
+Write R program to count the no of NA values in a data frame column ? Write R program to find elements come only once that are common to both given datasets?
+
+
+
+
+df1 = data.frame(StudentId = c(101:106),
+                 Product = c("DWM", "MPMC",
+                             "CIS", "ADA",
+                             "MAP",
+                             "BDA"))
+df1
+
+
+df2 = data.frame(StudentId = c(102, 104, 106,
+                               107, 108),
+                 State = c("Bangalore", "Mysore",
+                           "Pune", "Dehradun", "Delhi"))
+df2
+
+
+# Joining of dataframes
+df = merge(x = df1, y = df2, by = "StudentId")
+df
+
+
+# left outetr Joining of dataframes
+df = merge(x = df1, y = df2, by = "StudentId",
+           all.x = TRUE)
+df
+
+# right outer Joining of dataframes
+df = merge(x = df1, y = df2, by = "StudentId",
+           all.y = TRUE)
+df
+
+
+# Full outetr Joining of dataframes
+df = merge(x = df1, y = df2, by = "StudentId",
+           all = TRUE)
+df
+
+# Cross Joining of dataframes
+df = merge(x = df1, y = df2, by = NULL)
+df

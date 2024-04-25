@@ -1,0 +1,17 @@
+boxplot
+values_group_A <- c(1, 2, 3, 4, 5)
+values_group_B <- c(3, 4, 5, 6, 7)
+values_group_C <- c(5, 6, 7, 8, 9)
+
+
+all_values <- c(values_group_A, values_group_B, values_group_C)
+
+
+groups <- rep(c("A", "B", "C"), each = 5)
+
+
+boxplot(all_values ~ groups, 
+        main = "Boxplot of Values by Group",
+        xlab = "Group", ylab = "Value",
+        col = "lightblue",
+        border = "blue")

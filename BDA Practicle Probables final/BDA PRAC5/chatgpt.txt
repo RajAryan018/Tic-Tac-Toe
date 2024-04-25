@@ -1,0 +1,12 @@
+# Sample data
+values <- c(10, 20, 30, 40, 50)
+labels <- c("A", "B", "C", "D", "E")
+
+# Bar chart
+barplot(values, names.arg = labels, main = "Bar Chart", xlab = "Category", ylab = "Value", col = "lightblue")
+
+# Pie chart
+pie(values, labels = labels, main = "Pie Chart")
+
+# Box plot
+boxplot(values, main = "Box Plot", ylab = "Value")

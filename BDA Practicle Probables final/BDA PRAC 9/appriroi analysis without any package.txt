@@ -1,0 +1,79 @@
+# Sample transaction dataset (replace this with your own dataset)
+transactions <- list(
+    c("milk", "bread", "butter"),
+    c("milk", "bread"),
+    c("milk", "butter"),
+    c("bread", "butter"),
+    c("milk")
+)
+
+# Function to generate candidate itemsets of size k from frequent itemsets of size k-1
+generate_candidate_itemsets <- function(frequent_itemsets) {
+    k <- length(frequent_itemsets[[1]]) + 1
+    candidate_itemsets <- list()
+    num_frequent_itemsets <- length(frequent_itemsets)
+    for (i in 1:(num_frequent_itemsets - 1)) {
+        for (j in (i + 1):num_frequent_itemsets) {
+            itemset1 <- frequent_itemsets[[i]]
+            itemset2 <- frequent_itemsets[[j]]
+            common_items <- intersect(itemset1, itemset2)
+            if (length(common_items) == (k - 2)) {
+                candidate_itemset <- sort(union(itemset1, itemset2))
+                if (!candidate_itemset %in% candidate_itemsets) {
+                    candidate_itemsets[[length(candidate_itemsets) + 1]] <- candidate_itemset
+                }
+            }
+        }
+    }
+    return(candidate_itemsets)
+}
+
+# Function to prune candidate itemsets that do not meet minimum support threshold
+prune_candidate_itemsets <- function(candidate_itemsets, transactions, min_support) {
+    num_transactions <- length(transactions)
+    num_candidate_itemsets <- length(candidate_itemsets)
+    frequent_itemsets <- list()
+    for (i in 1:num_candidate_itemsets) {
+        itemset <- candidate_itemsets[[i]]
+        support_count <- 0
+        for (j in 1:num_transactions) {
+            if (all(item %in% transactions[[j]] for item in itemset)) {
+                support_count <- support_count + 1
+            }
+        }
+        support <- support_count / num_transactions
+        if (support >= min_support) {
+            frequent_itemsets[[length(frequent_itemsets) + 1]] <- itemset
+        }
+    }
+    return(frequent_itemsets)
+}
+
+# Function to perform Apriori algorithm
+apriori <- function(transactions, min_support) {
+    # Generate frequent itemsets of size 1
+    items <- unique(unlist(transactions))
+    frequent_itemsets <- lapply(items, function(item) list(item))
+    all_frequent_itemsets <- frequent_itemsets
+    
+    # Generate frequent itemsets of size >= 2
+    k <- 2
+    while (length(frequent_itemsets) > 0) {
+        candidate_itemsets <- generate_candidate_itemsets(frequent_itemsets)
+        frequent_itemsets <- prune_candidate_itemsets(candidate_itemsets, transactions, min_support)
+        all_frequent_itemsets <- c(all_frequent_itemsets, frequent_itemsets)
+        k <- k + 1
+    }
+    
+    return(all_frequent_itemsets)
+}
+
+# Perform Apriori analysis
+min_support <- 0.4
+frequent_itemsets <- apriori(transactions, min_support)
+
+# Display frequent itemsets
+for (i in 1:length(frequent_itemsets)) {
+    print(paste("Frequent Itemset of Size", i, ":"))
+    print(frequent_itemsets[[i]])
+}

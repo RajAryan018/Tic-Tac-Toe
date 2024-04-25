@@ -1,0 +1,6 @@
+#Text and color Bar Chart
+text(
+x = barplot(A, names.arg = B, col = "magenta", ylim = c(0, max(A) * 2), xlab = "X-axis", ylab = "Y-axis",
+main = "Text and Color Bar Chart"),
+y = A + 1, labels = A, pos = 3, cex = 1.2, col = "black"
+)

@@ -1,0 +1,10 @@
+f1 <- read_excel(file.choose())
+f1
+f2 <- factor(f1$Department)
+f2
+f3 <- factor(f1$Marks)
+f3
+f4 <- cut(f1$Marks, 5)
+f4
+f5 <- summary(f1)
+f5

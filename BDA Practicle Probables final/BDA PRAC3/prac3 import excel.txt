@@ -1,0 +1,21 @@
+# Load required package
+install.packages("readxl")
+library(readxl)
+
+# Function to find the levels of factors in a given vector
+find_factor_levels <- function(vec) {
+  if (is.factor(vec)) {
+    return(levels(vec))
+  } else {
+    return("Input vector is not a factor.")
+  }
+}
+
+# Import data from Excel file
+women_dataset <- read_excel("women_dataset.xlsx")
+
+# Print factor levels and women dataset
+print("Factor levels:")
+print(find_factor_levels(women_dataset))
+print("\nWomen dataset:")
+print(women_dataset)

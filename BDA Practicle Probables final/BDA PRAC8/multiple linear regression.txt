@@ -1,0 +1,26 @@
+# Sample data
+x1 <- c(1, 2, 3, 4, 5)
+x2 <- c(2, 3, 4, 5, 6)
+y <- c(3, 4, 5, 6, 7)
+
+# Create a data frame with the sample data
+data <- data.frame(x1, x2, y)
+
+# Build the multiple linear regression model
+model <- lm(y ~ x1 + x2, data = data)
+
+# Summary of the multiple linear regression model
+summary(model)
+
+# Predict using the model
+new_data <- data.frame(x1 = c(6, 7), x2 = c(7, 8))  # New data for prediction
+predicted <- predict(model, newdata = new_data)
+print(predicted)
+
+# Plot the data points and the regression plane (only applicable for 3D data)
+# This requires the 'scatterplot3d' package
+# install.packages("scatterplot3d")
+library(scatterplot3d)
+scatterplot3d(data$x1, data$x2, data$y, main = "Multiple Linear Regression", xlab = "x1", ylab = "x2", zlab = "y")
+# Plot the regression plane
+plane3d(model)

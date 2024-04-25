@@ -1,0 +1,6 @@
+# Sample data
+A <- c(10, 20, 15, 25, 30)
+names(A) <- c("A", "B", "C", "D", "E")  # Names for each bar
+
+# Create bar chart
+barplot(A, xlab = "X-axis", ylab = "Y-axis", main = "Bar Chart")
