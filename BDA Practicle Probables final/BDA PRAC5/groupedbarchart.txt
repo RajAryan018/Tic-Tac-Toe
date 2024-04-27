@@ -1,9 +1,0 @@
-#Grouped Bar Chart
-colors <- c("orange", "red", "brown")
-regions <- c("East","West", "North")
-Values <- matrix(c(2, 9, 3, 11, 9, 4, 8, 7, 3, 12, 5, 2, 8, 10, 11),
-                 nrow = 3, ncol = 5, byrow = TRUE)
-barplot(Values, main = "Total Revenue", names.arg = B,
-        xlab = "Month", ylab = "Revenue",
-        col = colors, beside = TRUE)
-legend("topleft", regions, cex = 0.8, fill = colors)

@@ -1,3 +1,0 @@
-#Horizontal Bar Chart
-barplot(A, horiz = TRUE, xlab = "X-axis", ylab = "Y-axis", main = "Horizontal Bar Chart")
-B <- c("Jan", "Feb", "Mar", "Apr", "May")

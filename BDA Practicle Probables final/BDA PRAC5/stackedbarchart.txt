@@ -1,5 +1,0 @@
-#Stacked Bar Chart
-barplot(Values, main = "Total Revenue", names.arg = B,
-        xlab = "Month", ylab = "Revenue",
-        col = colors)
-legend("topleft", regions, cex = 0.8, fill = colors)
